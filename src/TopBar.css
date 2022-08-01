@@ -1,0 +1,36 @@
+.topbar {
+  height: 60;
+  padding: 0px 40px;
+}
+
+.topbar svg {
+  font-size: 40px;
+  padding-right: 10px;
+}
+
+.topbar .title-box {
+  display: flex;
+  align-items: center;
+}
+
+.MuiToolbar-root {
+  display: flex;
+  justify-content: space-between;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+  padding: 0px 20px;
+}
+
+.links {
+  flex-direction: row;
+  display: flex;
+}
+
+.title {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}

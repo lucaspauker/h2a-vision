@@ -1,0 +1,38 @@
+.home {
+  width: 100%;
+}
+
+.hero {
+  max-width: 800px;
+  margin: 0px auto;
+  padding-bottom: 80px;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.hero-buttons button {
+  margin: 0px 10px;
+}
+
+.most-violations {
+  margin-top: 60px;
+}
+
+.about {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+.accordion-box {
+  max-width: 800px;
+  margin: 0px auto;
+}
+
+.accordion {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px !important;
+}

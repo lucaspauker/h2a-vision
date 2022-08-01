@@ -1,0 +1,60 @@
+#company .loc .MuiTypography-root {
+  padding: 0px;
+  margin: 0px;
+}
+
+#company .loc svg {
+  font-size: 50px;
+  padding-top: 5px;
+}
+
+#company .loc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#company .header {
+  margin-bottom: 50px;
+}
+
+#company .info {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+#company .violations {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+}
+
+#company h4 {
+  margin-bottom: 10px;
+}
+
+#company .external {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+#company .violation {
+  margin: 5px 0px;
+  text-align: left;
+}
+
+#company .links {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+}
+
+#company .link {
+  margin: 5px 0px;
+  padding: 0px;
+  text-align: left;
+}
+
+#company .address {
+  margin-bottom: 20px;
+}

@@ -1,0 +1,83 @@
+.input button {
+  padding: 15px 20px;
+  margin-left: 10px;
+}
+
+.loc .MuiTypography-root {
+  padding: 0px;
+  margin: 0px;
+}
+
+.loc svg {
+  font-size: 25px;
+  padding-top: 5px;
+}
+
+.loc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input button:hover {
+}
+
+.input input {
+}
+
+.input {
+  margin: 50px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input .tf {
+  width: 300px;
+}
+
+#search {
+  text-align: center;
+}
+
+#search .link {
+  color: blue;
+  margin: 0px auto;
+}
+
+#search .state {
+}
+
+.card {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  transition: transform .6s;
+  margin: 15px 10px;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.inner-card {
+  height: 100%;
+  width: 275px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 5px;
+}
+
+.cards {
+  flex-direction: row;
+  flex-wrap: wrap;
+  display: inline-flex;
+  justify-content: center;
+  align-items: stretch;
+  margin: auto;
+}
+
+.pagination {
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
