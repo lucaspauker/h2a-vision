@@ -1,14 +1,14 @@
-.topbar {
+#topbar {
   height: 60;
   padding: 0px 40px;
 }
 
-.topbar svg {
+#topbar svg {
   font-size: 40px;
   padding-right: 10px;
 }
 
-.topbar .title-box {
+#topbar .title-box {
   display: flex;
   align-items: center;
 }
@@ -22,6 +22,10 @@
   color: white;
   text-decoration: none;
   padding: 0px 20px;
+}
+
+#topbar button {
+  margin: 0px 20px;
 }
 
 .links {

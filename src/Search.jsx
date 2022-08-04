@@ -4,8 +4,9 @@ import {
   Typography, CircularProgress, CardContent, Card, CardActions, Button, Box, TextField, Select, MenuItem, InputLabel, FormControl, Divider
 } from '@mui/material';
 import CompanyCard from './CompanyCard.jsx';
-const axios = require('axios');
+import data from './data.js';
 
+const axios = require('axios');
 const STATES = ['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY']
 
 class Search extends React.Component {
@@ -145,7 +146,7 @@ class Search extends React.Component {
   }
 
   handleChange(event) {
-    this.setState({ inputText: event.target.value, state: '' });
+    this.setState({ inputText: event.target.value, state: '', index: 0 });
     if (event.target.value === '') {
       this.handleSubmit(event, this.state.sort);
     } else {
@@ -198,17 +199,18 @@ class Search extends React.Component {
 
   render() {
     let display;
+    let lanData = data[this.props.language];
     if (this.state.data.length > 0) {
       display = <div className="cards">
         {this.state.data.map((elem, ind) =>
-          <CompanyCard name={elem.name} city={elem.city} state={elem.state} job={elem.job} h2aViolations={elem.h2aViolations} h2aBW={elem.h2aBW} h2aEE={elem.h2aEE} id={elem._id} key={elem._id} />
+          <CompanyCard name={elem.name} city={elem.city} state={elem.state} job={elem.job} h2aViolations={elem.h2aViolations} h2aBW={elem.h2aBW} h2aEE={elem.h2aEE} id={elem._id} key={elem._id} language={this.props.language} />
         )}
       </div>;
     } else if (!this.state.loaded) {
       display = <CircularProgress />;
     } else {
       display = <Typography variant="h5" color="inherit">
-            No companies found
+            {lanData.search.noCompaniesText}
           </Typography>;
     }
 
@@ -244,12 +246,12 @@ class Search extends React.Component {
       <div id="search">
         <div className="header">
           <Typography variant="h2" color="inherit">
-            Search H-2A violation data
+            {lanData.search.title}
           </Typography>
         </div>
         <div className="input">
           <FormControl sx={{ m: 1, minWidth: 200 }}>
-            <InputLabel id="state-label">State</InputLabel>
+            <InputLabel id="state-label">{lanData.search.stateText}</InputLabel>
             <Select
               labelId="state-label"
               className="state"
@@ -258,7 +260,7 @@ class Search extends React.Component {
               label="State"
             >
               <MenuItem value="">
-                <em>None</em>
+                <em>{lanData.search.noneText}</em>
               </MenuItem>
               {STATES.map((elem, ind) =>
                 <MenuItem value={elem} key={ind}>{elem}</MenuItem>
@@ -266,7 +268,7 @@ class Search extends React.Component {
             </Select>
           </FormControl>
           <FormControl sx={{ m: 1, minWidth: 200 }}>
-            <InputLabel id="sort-label">Sort</InputLabel>
+            <InputLabel id="sort-label">{lanData.search.sortText}</InputLabel>
             <Select
               labelId="sort-label"
               className="sort"
@@ -274,12 +276,12 @@ class Search extends React.Component {
               onChange={this.handleSortChange}
               label="sort"
             >
-              <MenuItem value="alphabetical">Alphabetical</MenuItem>
-              <MenuItem value="h2a-violations">H-2A Violations</MenuItem>
+              <MenuItem value="alphabetical">{lanData.search.alphabeticalText}</MenuItem>
+              <MenuItem value="h2a-violations">{lanData.search.h2aViolText}</MenuItem>
             </Select>
           </FormControl>
-          <TextField className="tf" id="outlined-basic" label="Search by company name" variant="outlined" value={this.state.inputText} onChange={this.handleChange} />
-          <Button variant="outlined" onClick={this.handleSubmit}>Refresh</Button>
+          <TextField className="tf" id="outlined-basic" label={lanData.search.searchCompanyText} variant="outlined" value={this.state.inputText} onChange={this.handleChange} />
+          <Button variant="outlined" onClick={this.handleSubmit}>{lanData.search.refreshText}</Button>
         </div>
         <Divider light />
         {pagination}

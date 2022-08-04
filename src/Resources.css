@@ -10,16 +10,52 @@
 }
 
 #resources h4 {
-  padding-bottom: 10px;
+  padding-bottom: 20px;
 }
 
 #resources .list {
   display: flex;
   font-size: 20px;
+  flex-direction: column;
 }
 
 #resources .elem {
   text-align: left;
 }
 
+#resources .card {
+  margin: 5px 0px;
+}
 
+#resources .card:hover {
+  transform: scale(1.015);
+}
+
+#resources .inner-card {
+  height: 100%;
+  width: 100%;
+  max-width: 1200px;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  box-sizing: border-box;
+  padding: 20px;
+  text-align: left;
+}
+
+#resources a {
+  text-decoration: none;
+  color: black;
+}
+
+#resources .outer-card-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#resources svg {
+  font-size: 30px;
+  margin-left: 10px;
+}

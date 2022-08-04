@@ -123,6 +123,45 @@ app.get('/company/state/:state/:sort', function (request, response) {
   });
 });
 
+app.get('/company/industry/:industry/:sort', function (request, response) {
+  let st = String(request.params.industry);
+  let sort = request.params.sort;
+  Company.find({industry: st}, function (err, info) {
+    if (err) {
+      response.status(500).send(JSON.stringify(err));
+      return;
+    }
+    if (info.length === 0) {
+      response.status(200).send(JSON.stringify(info));
+      return;
+    }
+    let companies = JSON.parse(JSON.stringify(info));
+    companies = companies.sort(function(a, b) {
+      const nameA = a.name.toUpperCase(); // ignore upper and lowercase
+      const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+      const h2aA = a.h2aViolations;
+      const h2aB = b.h2aViolations;
+      if (sort === 'h2a-violations') {
+        if (h2aA > h2aB) {
+          return -1;
+        }
+        if (h2aA < h2aB) {
+          return 1;
+        }
+      }
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      // names must be equal
+      return 0;
+    });
+    response.status(200).send(JSON.stringify(companies));
+  });
+});
+
 app.get('/company/search/:search/:sort', function (request, response) {
   let search = String(request.params.search);
   let sort = request.params.sort;

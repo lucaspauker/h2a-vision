@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { MdLocationOn } from "react-icons/md";
 import { Link } from "react-router-dom";
 import './Company.css';
+import data from './data.js';
 const axios = require('axios');
 
 class CompanyComp extends React.Component {
@@ -67,6 +68,7 @@ class CompanyComp extends React.Component {
 
   render() {
     let body;
+    let lanData = data[this.props.language];
     if (this.state.loaded) {
       body = <>
         <div className="header">
@@ -91,35 +93,35 @@ class CompanyComp extends React.Component {
         <Divider light />
         <div className="info">
           <Typography variant="h4" color="inherit">
-            Violation Statistics
+            {lanData.company.violStatsText}
           </Typography>
           <div className="violations">
             <Typography className="violation" variant="body" color="inherit">
-              <b>H-2A violations:</b> {this.state.h2aViolations}
+              <b>{lanData.company.h2aViols}:</b> {this.state.h2aViolations}
             </Typography>
             <Typography className="violation" variant="body" color="inherit">
-              <b>H-2A back wages paid:</b> {this.prettyDollars(this.state.h2aBW)}
+              <b>{lanData.company.h2aBW}:</b> {this.prettyDollars(this.state.h2aBW)}
             </Typography>
             <Typography className="violation" variant="body" color="inherit">
-              <b># of employees affected:</b> {this.state.h2aEE}
+              <b>{lanData.company.numEE}:</b> {this.state.h2aEE}
             </Typography>
             <Typography className="violation" variant="body" color="inherit">
-              <b>Investigation start date:</b> {this.state.startDate}
+              <b>{lanData.company.invStart}:</b> {this.state.startDate}
             </Typography>
             <Typography className="violation" variant="body" color="inherit">
-              <b>Investigation end date:</b> {this.state.endDate}
+              <b>{lanData.company.invEnd}:</b> {this.state.endDate}
             </Typography>
           </div>
         </div>
         <Divider light />
         <div className="external">
           <Typography variant="h4" color="inherit">
-            External Links
+            {lanData.company.extLinksText}
           </Typography>
           <div className="links">
             <Typography className="link" variant="body" color="inherit">
               <a href={"https://enforcedata.dol.gov/Enfdata/search.php?case_id=" + this.state.caseID} target="_blank">
-                US Department of Labor Enforcement Data
+                {lanData.company.dol}
               </a>
             </Typography>
             <Typography className="link" variant="body" color="inherit">
@@ -141,9 +143,9 @@ class CompanyComp extends React.Component {
   }
 }
 
-function Company() {
+function Company(props) {
   console.log(useParams());
-  return <CompanyComp id={useParams().id} />
+  return <CompanyComp id={useParams().id} language={props.language}/>
 }
 
 

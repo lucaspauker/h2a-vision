@@ -3,6 +3,7 @@ import { MdLocationOn } from "react-icons/md";
 import {
   Typography, CircularProgress, CardContent, Card, CardActions, Button, Box, TextField, Select, MenuItem, InputLabel, FormControl, Divider
 } from '@mui/material';
+import data from './data.js';
 
 class CompanyCard extends React.Component {
   constructor(props) {
@@ -34,6 +35,7 @@ class CompanyCard extends React.Component {
   }
 
   render() {
+    let lanData = data[this.props.language];
     const card = (
       <React.Fragment>
         <div className="card-elem">
@@ -56,13 +58,13 @@ class CompanyCard extends React.Component {
         </div>
         <div className="card-elem">
           <Typography variant="body2">
-            H-2A violations: {this.state.h2aViolations}
+            {lanData.companyCard.h2aViols}: {this.state.h2aViolations}
           </Typography>
           <Typography variant="body2">
-            H-2A back wages: {this.prettyDollars(this.state.h2aBW)}
+            {lanData.companyCard.h2aBW}: {this.prettyDollars(this.state.h2aBW)}
           </Typography>
           <Typography variant="body2">
-            # of employees affected: {this.state.h2aEE}
+            {lanData.companyCard.numEE}: {this.state.h2aEE}
           </Typography>
         </div>
         <div className="card-elem">

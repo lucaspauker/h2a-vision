@@ -1,0 +1,13 @@
+footer {
+  color: white;
+  padding: 20px;
+  height: 100px;
+}
+
+.footer-box {
+  max-width: 800px;
+  height: 100%;
+  margin: 0px auto;
+  display: flex;
+  align-items: center;
+}
