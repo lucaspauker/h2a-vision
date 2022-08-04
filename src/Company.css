@@ -31,6 +31,19 @@
 
 #company h4 {
   margin-bottom: 10px;
+  text-decoration: none;
+}
+
+#company a {
+  text-decoration: none;
+}
+
+#company .address:hover {
+  text-decoration: underline;
+}
+
+#company .link:hover {
+  text-decoration: underline;
 }
 
 #company .external {
@@ -57,4 +70,12 @@
 
 #company .address {
   margin-bottom: 20px;
+}
+
+#company .card {
+  padding: 100px;
+}
+
+#company .card:hover {
+  transform: none;
 }

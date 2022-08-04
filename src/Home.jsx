@@ -4,7 +4,6 @@ import {
 } from '@mui/material';
 import { MdExpandMore } from "react-icons/md";
 import './Home.css';
-import { Link } from "react-router-dom";
 import CompanyCard from './CompanyCard.jsx';
 import data from './data.js';
 
@@ -26,7 +25,11 @@ class Home extends React.Component {
   }
 
   changeURL(event, url) {
-    window.location.href = url;
+    if (window.location.href.split("/")[3] === "es") {
+      window.location.href = "/es" + url;
+    } else {
+      window.location.href = url;
+    }
   }
 
   changeExpanded(event, question) {
@@ -53,7 +56,19 @@ class Home extends React.Component {
     if (this.state.data.length > 0) {
       display = <div className="cards">
         {this.state.data.map((elem, ind) =>
-          <CompanyCard name={elem.name} city={elem.city} state={elem.state} job={elem.job} h2aViolations={elem.h2aViolations} h2aBW={elem.h2aBW} h2aEE={elem.h2aEE} id={elem._id} key={elem._id} language={this.props.language}/>
+          <CompanyCard
+            name={elem.name}
+            city={elem.city}
+            state={elem.state}
+            job={elem.job}
+            h2aViolations={elem.h2aViolations}
+            h2aBW={elem.h2aBW}
+            h2aEE={elem.h2aEE}
+            h2aCMP={elem.h2aCMP}
+            id={elem._id}
+            key={elem._id}
+            language={this.props.language}
+          />
         )}
       </div>;
     } else {

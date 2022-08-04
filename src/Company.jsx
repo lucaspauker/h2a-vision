@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Typography, CircularProgress, Divider
+  Typography, CircularProgress, Divider, Card
 } from '@mui/material';
 import { useParams } from "react-router-dom";
 import { MdLocationOn } from "react-icons/md";
@@ -48,6 +48,7 @@ class CompanyComp extends React.Component {
           h2aBW: response.data.h2aBW,
           job: response.data.job,
           h2aEE: response.data.h2aEE,
+          h2aCMP: response.data.h2aCMP,
           startDate: response.data.startDate,
           endDate: response.data.endDate,
           loaded: true
@@ -79,13 +80,12 @@ class CompanyComp extends React.Component {
             <Typography color="secondary.light">
               <MdLocationOn />
             </Typography>
-            <Typography variant="h4" color="text.secondary">
-              {this.state.city + ", " + this.state.state}
-            </Typography>
+            <a href={"https://www.google.com/maps/search/" + this.state.address + ", " + this.state.city + ", " + this.state.state} target="_blank">
+              <Typography variant="h4" color="text.secondary" className="address">
+                {this.state.address + ", " + this.state.city + ", " + this.state.state}
+              </Typography>
+            </a>
           </div>
-          <Typography className="address" variant="h5" color="text.secondary">
-            {this.state.address}
-          </Typography>
           <Typography variant="h5" color="primary.dark">
             {this.state.job}
           </Typography>
@@ -100,11 +100,21 @@ class CompanyComp extends React.Component {
               <b>{lanData.company.h2aViols}:</b> {this.state.h2aViolations}
             </Typography>
             <Typography className="violation" variant="body" color="inherit">
+              <b>{lanData.company.numEE}:</b> {this.state.h2aEE}
+            </Typography>
+            <Typography className="violation" variant="body" color="inherit">
               <b>{lanData.company.h2aBW}:</b> {this.prettyDollars(this.state.h2aBW)}
             </Typography>
             <Typography className="violation" variant="body" color="inherit">
-              <b>{lanData.company.numEE}:</b> {this.state.h2aEE}
+              <b>{lanData.company.h2aCMP}:</b> {this.prettyDollars(this.state.h2aCMP)}
             </Typography>
+            <Typography className="violation" variant="body" color="inherit">
+              <b>{lanData.company.totalText}:</b> {this.prettyDollars(parseFloat(this.state.h2aBW) + parseFloat(this.state.h2aCMP))}
+            </Typography>
+            <Typography className="violation" variant="body" color="inherit">
+              <b>{lanData.company.averageText}:</b> {this.prettyDollars((parseFloat(this.state.h2aBW) + parseFloat(this.state.h2aCMP)) / this.state.h2aViolations)}
+            </Typography>
+            <br></br>
             <Typography className="violation" variant="body" color="inherit">
               <b>{lanData.company.invStart}:</b> {this.state.startDate}
             </Typography>
@@ -137,7 +147,9 @@ class CompanyComp extends React.Component {
     }
     return (
       <div id="company">
-        {body}
+        <Card className="card">
+          {body}
+        </Card>
       </div>
     );
   }

@@ -50,6 +50,7 @@ Promise.all(removePromises).then(function () {
       const h2aViolations = parseInt(getN(arr[i], 45));
       const h2aBW = getN(arr[i], 46);
       const h2aEE = parseInt(getN(arr[i], 47));
+      const h2aCMP = getN(arr[i], 48);
       const startDate = getN(arr[i], 14);
       const endDate = getN(arr[i], 15);
       models.push({
@@ -62,6 +63,7 @@ Promise.all(removePromises).then(function () {
         h2aViolations: h2aViolations,
         h2aBW: h2aBW,
         h2aEE: h2aEE,
+        h2aCMP: h2aCMP,
         startDate: startDate,
         endDate: endDate
       });
@@ -87,6 +89,7 @@ Promise.all(removePromises).then(function () {
             h2aViolations: c.h2aViolations,
             h2aBW: c.h2aBW,
             h2aEE: c.h2aEE,
+            h2aCMP: c.h2aCMP,
             startDate: c.startDate,
             endDate: c.endDate,
         }).then(function (obj) {

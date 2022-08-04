@@ -203,7 +203,19 @@ class Search extends React.Component {
     if (this.state.data.length > 0) {
       display = <div className="cards">
         {this.state.data.map((elem, ind) =>
-          <CompanyCard name={elem.name} city={elem.city} state={elem.state} job={elem.job} h2aViolations={elem.h2aViolations} h2aBW={elem.h2aBW} h2aEE={elem.h2aEE} id={elem._id} key={elem._id} language={this.props.language} />
+          <CompanyCard
+            name={elem.name}
+            city={elem.city}
+            state={elem.state}
+            job={elem.job}
+            h2aViolations={elem.h2aViolations}
+            h2aBW={elem.h2aBW}
+            h2aEE={elem.h2aEE}
+            h2aCMP={elem.h2aCMP}
+            id={elem._id}
+            key={elem._id}
+            language={this.props.language}
+          />
         )}
       </div>;
     } else if (!this.state.loaded) {

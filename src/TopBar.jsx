@@ -9,9 +9,6 @@ import axios from 'axios';
 
 import data from './data.js';
 
-/**
- * Define TopBar
- */
 class TopBar extends React.Component {
   constructor(props) {
     super(props);
@@ -31,7 +28,18 @@ class TopBar extends React.Component {
   }
 
   render() {
-    let lanData = data[this.props.language];
+    let language = this.props.language;
+    let lanButton = "";
+    let begin = "";
+    if (window.location.href.split("/")[3] === "es") {
+      begin = "/es"
+      language = "español";
+    } else {
+      lanButton = <Button variant="contained" color="warning" onClick={(event) => {this.state.changeLanguage(event, this.changeLanName(this.props.language))}}>
+              {this.changeLanName(this.props.language)}
+            </Button>
+    }
+    let lanData = data[language];
     return (
       <AppBar id="topbar" position="absolute">
         <Toolbar>
@@ -44,21 +52,19 @@ class TopBar extends React.Component {
             </Typography>
           </div>
           <div className="links">
-            <Button variant="contained" color="warning" onClick={(event) => {this.state.changeLanguage(event, this.changeLanName(this.props.language))}}>
-              {this.changeLanName(this.props.language)}
-            </Button>
+            {lanButton}
             <Typography variant="h6" color="inherit">
-              <Link to="/" className="link">
+              <Link to={begin + "/"} className="link">
                 {lanData.topbar.homeText}
               </Link>
             </Typography>
             <Typography variant="h6" color="inherit">
-              <Link to="/resources" className="link">
+              <Link to={begin + "/resources"} className="link">
                 {lanData.topbar.resourcesText}
               </Link>
             </Typography>
             <Typography variant="h6" color="inherit">
-              <Link to="/search" className="link">
+              <Link to={begin + "/search"} className="link">
                 {lanData.topbar.searchText}
               </Link>
             </Typography>

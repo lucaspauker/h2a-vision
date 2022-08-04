@@ -17,6 +17,7 @@ var companySchema = new mongoose.Schema({
   h2aViolations: Number,
   h2aBW: String,
   h2aEE: Number,
+  h2aCMP: String,
   startDate: String,
   endDate: String,
 });

@@ -17,13 +17,18 @@ class CompanyCard extends React.Component {
       h2aViolations: this.props.h2aViolations,
       h2aBW: this.props.h2aBW,
       h2aEE: this.props.h2aEE,
+      h2aCMP: this.props.h2aCMP,
     };
     this.handleClick = this.handleClick.bind(this);
     this.prettyDollars = this.prettyDollars.bind(this);
   }
 
   handleClick(event) {
-    window.location.href="/company/" + this.state.id
+    let begin = "";
+    if (window.location.href.split("/")[3] === "es") {
+      begin = "/es"
+    }
+    window.location.href=begin + "/company/" + this.state.id
   }
 
   prettyDollars(str) {
@@ -61,14 +66,17 @@ class CompanyCard extends React.Component {
             {lanData.companyCard.h2aViols}: {this.state.h2aViolations}
           </Typography>
           <Typography variant="body2">
+            {lanData.companyCard.numEE}: {this.state.h2aEE}
+          </Typography>
+          <Typography variant="body2">
             {lanData.companyCard.h2aBW}: {this.prettyDollars(this.state.h2aBW)}
           </Typography>
           <Typography variant="body2">
-            {lanData.companyCard.numEE}: {this.state.h2aEE}
+            {lanData.companyCard.h2aCMP}: {this.prettyDollars(this.state.h2aCMP)}
           </Typography>
         </div>
         <div className="card-elem">
-          <Button variant="outlined" onClick={this.handleClick}>Learn more</Button>
+          <Button variant="outlined" onClick={this.handleClick}>{lanData.companyCard.learnMore}</Button>
         </div>
       </React.Fragment>
     );

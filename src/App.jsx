@@ -67,6 +67,19 @@ class App extends React.Component {
               <Route path="/search"
                 element={<Search language={this.state.language} />}
               />
+              <Route
+                path="/es/company/:id"
+                element = {<Company language="español"/>}
+              />
+              <Route path="/es/"
+                element={<Home language="español"/>}
+              />
+              <Route path="/es/resources"
+                element={<Resources language="español" />}
+              />
+              <Route path="/es/search"
+                element={<Search language="español" />}
+              />
             </Routes>
           </div>
           <Footer language={this.state.language} />
