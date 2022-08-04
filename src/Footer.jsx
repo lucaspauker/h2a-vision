@@ -4,7 +4,6 @@ import {
 } from '@mui/material';
 import { GiBinoculars } from "react-icons/gi";
 import { Link } from "react-router-dom";
-import axios from 'axios';
 import './Footer.css';
 import data from './data.js';
 

@@ -1,4 +1,5 @@
 var data = {
+  db: 'localhost:5000',
   english: {
     topbar: {
       titleText: 'H-2A Vision',
