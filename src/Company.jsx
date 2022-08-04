@@ -36,7 +36,7 @@ class CompanyComp extends React.Component {
 
   load(d) {
     console.log("Loading " + this.state.id);
-    axios.get('http://' + data.db + '/company/' + this.state.id)
+    axios.get(data.db + '/company/' + this.state.id)
       .then((response) => {
         this.setState({
           caseID: response.data.caseID,

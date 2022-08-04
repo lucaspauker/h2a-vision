@@ -35,7 +35,7 @@ class Search extends React.Component {
   }
 
   componentDidMount(prevProps) {
-    axios.get('http://' + data.db + '/company/npages')
+    axios.get(data.db + '/company/npages')
       .then((response) => {
         this.setState({maxIndex: response.data});
       })
@@ -78,7 +78,7 @@ class Search extends React.Component {
     this.setState({loaded: false});
     if (this.state.filtered) {
       if (this.state.inputText.length > 0) {
-        axios.get('http://' + data.db + '/company/search/' + this.state.inputText + '/' + this.state.sort)
+        axios.get(data.db + '/company/search/' + this.state.inputText + '/' + this.state.sort)
           .then((response) => {
             this.setState({rawData: response.data, data: response.data.slice(0, 100), loaded: true, filtered: true, maxIndex: Math.ceil(response.data.length / 100) })
           })
@@ -86,7 +86,7 @@ class Search extends React.Component {
             console.log(error);
           });
       } else {
-        axios.get('http://' + data.db + '/company/state/' + this.state.state  + "/" + this.state.sort)
+        axios.get(data.db + '/company/state/' + this.state.state  + "/" + this.state.sort)
           .then((response) => {
             this.setState({rawData: response.data, data: response.data.slice(index * 100, (index + 1) * 100), loaded: true, filtered: true, maxIndex: Math.ceil(response.data.length / 100) });
           })
@@ -95,7 +95,7 @@ class Search extends React.Component {
           });
       }
     } else {
-      axios.get('http://' + data.db + '/company/list/' + index + '/' + this.state.sort)
+      axios.get(data.db + '/company/list/' + index + '/' + this.state.sort)
         .then((response) => {
           this.setState({data: response.data, loaded: true}, () => {
             //this.sortData();
@@ -110,14 +110,14 @@ class Search extends React.Component {
   handleStateChange(event) {
     this.setState({ state: event.target.value, loaded: false, data: [], index: 0 });
     if (event.target.value === '') {
-      axios.get('http://' + data.db + '/company/npages')
+      axios.get(data.db + '/company/npages')
         .then((response) => {
           this.setState({maxIndex: response.data});
         })
         .catch((error) => {
           console.log(error);
         });
-      axios.get('http://' + data.db + '/company/list/0/' + this.state.sort)
+      axios.get(data.db + '/company/list/0/' + this.state.sort)
         .then((response) => {
           this.setState({data: response.data, loaded: true, filtered: false}, () => {
             //this.sortData();
@@ -127,7 +127,7 @@ class Search extends React.Component {
           console.log(error);
         });
     } else {
-      axios.get('http://' + data.db + '/company/state/' + event.target.value + "/" + this.state.sort)
+      axios.get(data.db + '/company/state/' + event.target.value + "/" + this.state.sort)
         .then((response) => {
           this.setState({rawData: response.data, data: response.data.slice(0, 100), loaded: true, filtered: true, maxIndex: Math.ceil(response.data.length / 100) }, () => {
             //this.sortData();
@@ -150,7 +150,7 @@ class Search extends React.Component {
     if (event.target.value === '') {
       this.handleSubmit(event, this.state.sort);
     } else {
-      axios.get('http://' + data.db + '/company/search/' + event.target.value + '/' + this.state.sort)
+      axios.get(data.db + '/company/search/' + event.target.value + '/' + this.state.sort)
         .then((response) => {
           this.setState({rawData: response.data, data: response.data.slice(0, 100), loaded: true, filtered: true, maxIndex: Math.ceil(response.data.length / 100) })
         })
@@ -162,7 +162,7 @@ class Search extends React.Component {
 
   handleSubmit(event, sort="alphabetical") {
     // Refresh
-    axios.get('http://' + data.db + '/company/npages')
+    axios.get(data.db + '/company/npages')
       .then((response) => {
         this.setState({maxIndex: response.data});
       })

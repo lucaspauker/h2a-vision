@@ -42,7 +42,7 @@ class Home extends React.Component {
 
   load(d) {
     console.log("Loading");
-    axios.get('http://' + data.db + '/company/list/0/h2a-violations')
+    axios.get(data.db + '/company/list/0/h2a-violations')
       .then((response) => {
         this.setState({data: response.data.slice(0, 3), loaded: true});
       })
