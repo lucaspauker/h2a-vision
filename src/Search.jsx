@@ -35,7 +35,7 @@ class Search extends React.Component {
   }
 
   componentDidMount(prevProps) {
-    axios.get('http://localhost:5000/company/npages')
+    axios.get('http://' + data.db + '/company/npages')
       .then((response) => {
         this.setState({maxIndex: response.data});
       })
