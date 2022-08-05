@@ -3,6 +3,7 @@ import { MdLocationOn } from "react-icons/md";
 import {
   Typography, CircularProgress, CardContent, Card, CardActions, Button, Box, TextField, Select, MenuItem, InputLabel, FormControl, Divider
 } from '@mui/material';
+import { Navigate } from "react-router-dom";
 import data from './data.js';
 
 class CompanyCard extends React.Component {
@@ -18,6 +19,7 @@ class CompanyCard extends React.Component {
       h2aBW: this.props.h2aBW,
       h2aEE: this.props.h2aEE,
       h2aCMP: this.props.h2aCMP,
+      newUrl: '',
     };
     this.handleClick = this.handleClick.bind(this);
     this.prettyDollars = this.prettyDollars.bind(this);
@@ -28,7 +30,7 @@ class CompanyCard extends React.Component {
     if (window.location.href.split("/")[3] === "es") {
       begin = "/es"
     }
-    window.location.href=begin + "/company/" + this.state.id
+    this.setState({newUrl: begin + "/company/" + this.state.id});
   }
 
   prettyDollars(str) {
@@ -76,6 +78,7 @@ class CompanyCard extends React.Component {
           </Typography>
         </div>
         <div className="card-elem">
+          {this.state.newUrl && <Navigate to={this.state.newUrl} replace={true} />}
           <Button variant="outlined" onClick={this.handleClick}>{lanData.companyCard.learnMore}</Button>
         </div>
       </React.Fragment>

@@ -5,6 +5,7 @@ import {
 import { MdExpandMore } from "react-icons/md";
 import './Home.css';
 import CompanyCard from './CompanyCard.jsx';
+import { Navigate } from "react-router-dom";
 import data from './data.js';
 
 const axios = require('axios');
@@ -15,6 +16,7 @@ class Home extends React.Component {
     this.state = {
       data: [],
       expanded: '',
+      newUrl: '',
     };
     this.changeURL = this.changeURL.bind(this);
     this.changeExpanded = this.changeExpanded.bind(this);
@@ -26,9 +28,11 @@ class Home extends React.Component {
 
   changeURL(event, url) {
     if (window.location.href.split("/")[3] === "es") {
-      window.location.href = "/es" + url;
+      this.setState({newUrl: "/es" + url});
+      //window.location.href = "/es" + url;
     } else {
-      window.location.href = url;
+      this.setState({newUrl: url});
+      //window.location.href = url;
     }
   }
 
@@ -85,6 +89,7 @@ class Home extends React.Component {
             {lanData.home.descriptionText}
           </Typography>
           <div className="hero-buttons">
+            {this.state.newUrl && <Navigate to={this.state.newUrl} replace={true} />}
             <Button variant="contained" color="primary" onClick={event => this.changeURL(event, "/search")}>
               {lanData.home.searchButtonText}
             </Button>
