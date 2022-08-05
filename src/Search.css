@@ -32,6 +32,13 @@
   align-items: center;
 }
 
+@media only screen and (max-width: 600px) {
+  .input {
+    flex-direction: column;
+  }
+}
+
+
 .input .tf {
   width: 300px;
 }

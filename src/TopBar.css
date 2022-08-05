@@ -33,6 +33,12 @@
   display: flex;
 }
 
+@media only screen and (max-width: 600px) {
+  .links {
+    flex-direction: column;
+  }
+}
+
 .title {
   color: white;
   text-decoration: none;
