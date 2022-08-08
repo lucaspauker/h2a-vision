@@ -1,5 +1,5 @@
 var data = {
-  db: 'localhost:5000',
+  db: 'http://localhost:5000',
   english: {
     topbar: {
       titleText: 'H-2A Vision',
@@ -42,7 +42,7 @@ var data = {
       ],
     },
     footer: {
-      text: 'The information provided by H-2A Vision is for general informational peurposes only. All information is provided in good faith, however we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability, or completeness of any information.',
+      text: 'The information provided by H-2A Vision is for general informational purposes only. All information is provided in good faith, however we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability, or completeness of any information.',
     },
     companyCard: {
       h2aViols: 'H-2A violations',
