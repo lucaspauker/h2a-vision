@@ -33,75 +33,88 @@ var removePromises = [Company.deleteMany({})];
 const readFile = require('util').promisify(fs.readFile);
 
 Promise.all(removePromises).then(function () {
-    var models = [];
-    const contents = fs.readFileSync('./data/whd_h2a.csv', 'utf-8');
-    const arr = contents.split(/\r?\n/);
-    let getN = function (s, ind) {
-      let elem = s.split('"')[(ind + 1) * 2 + 1];
-      return elem;
-    };
-    for (let i=1; i < arr.length - 1; i++) {
-      const caseID = parseInt(getN(arr[i], 0));
-      const name = getN(arr[i], 1);
-      const address = getN(arr[i], 3);
-      const city = getN(arr[i], 4);
-      const state = getN(arr[i], 5);
-      const job = getN(arr[i], 8);
-      const h2aViolations = parseInt(getN(arr[i], 45));
-      const h2aBW = getN(arr[i], 46);
-      const h2aEE = parseInt(getN(arr[i], 47));
-      const h2aCMP = getN(arr[i], 48);
-      const startDate = getN(arr[i], 14);
-      const endDate = getN(arr[i], 15);
-      models.push({
-        caseID: caseID,
-        name: name,
-        address: address,
-        city: city,
-        state: state,
-        job: job,
-        h2aViolations: h2aViolations,
-        h2aBW: h2aBW,
-        h2aEE: h2aEE,
-        h2aCMP: h2aCMP,
-        startDate: startDate,
-        endDate: endDate
+  var models = [];
+  const contents = fs.readFileSync('./data/whd_h2a.csv', 'utf-8');
+  const arr = contents.split(/\r?\n/);
+  let getN = function (s, ind) {
+    let elem = s.split('"')[(ind + 1) * 2 + 1];
+    return elem;
+  };
+  for (let i=1; i < arr.length - 1; i++) {
+    const caseID = parseInt(getN(arr[i], 0));
+    const name = getN(arr[i], 1);
+    const address = getN(arr[i], 3);
+    const city = getN(arr[i], 4);
+    const state = getN(arr[i], 5);
+    const job = getN(arr[i], 8);
+    const h2aViolations = parseInt(getN(arr[i], 45));
+    const h2aBW = getN(arr[i], 46);
+    const h2aEE = parseInt(getN(arr[i], 47));
+    const h2aCMP = getN(arr[i], 48);
+    const startDate = getN(arr[i], 14);
+    const endDate = getN(arr[i], 15);
+    models.push({
+      caseID: caseID,
+      name: name,
+      address: address,
+      city: city,
+      state: state,
+      job: job,
+      h2aViolations: h2aViolations,
+      h2aBW: h2aBW,
+      h2aEE: h2aEE,
+      h2aCMP: h2aCMP,
+      startDate: startDate,
+      endDate: endDate
+    });
+  }
+  //var mapFakeId2RealId = {};
+  //for (let i=0; i < models.length; i++) {
+  //  c = models[i];
+  //  Company.create({
+  //      caseID: c.caseID,
+  //      name: c.name,
+  //      address: c.address,
+  //      city: c.city,
+  //      state: c.state,
+  //      job: c.job,
+  //      h2aViolations: c.h2aViolations,
+  //      h2aBW: c.h2aBW,
+  //      h2aEE: c.h2aEE,
+  //      h2aCMP: c.h2aCMP,
+  //      startDate: c.startDate,
+  //      endDate: c.endDate,
+  //  }).then(function (obj) {
+  //      obj.save();
+  //  }).catch(function(err){
+  //      console.error('Error create user', err);
+  //  });
+  //}
+  let companyPromises = models.map(function (c) {
+      return Company.create({
+          caseID: c.caseID,
+          name: c.name,
+          address: c.address,
+          city: c.city,
+          state: c.state,
+          job: c.job,
+          h2aViolations: c.h2aViolations,
+          h2aBW: c.h2aBW,
+          h2aEE: c.h2aEE,
+          h2aCMP: c.h2aCMP,
+          startDate: c.startDate,
+          endDate: c.endDate,
+      }).then(function (obj) {
+          obj.save();
+      }).catch(function(err){
+          console.error('Error create user', err);
       });
-    }
-    //var models = [
-    //  {name: 'Foobar', city: 'Houston', state: 'TX', job: 'Farmworker'},
-    //  {name: 'Foo', city: 'Austin', state: 'TX', job: 'tate Generation and Distribution of Electric Power'},
-    //  {name: 'Foobar', city: 'Chicago', state: 'IL', job: 'Retail Bakeries'},
-    //  {name: 'a Farm', city: 'Houston', state: 'TX', job: 'Retail Bakeries'},
-    //  {name: 'another Farm', city: 'Austin', state: 'TX', job: 'Retail Bakeries'},
-    //  {name: 'Really long named farm', city: 'Chicago', state: 'IL', job: 'Retail Bakeries'},
-    //  {name: 'SLKJD', city: 'Chicago', state: 'IL', job: 'Retail Bakeries'},
-    //]
-    var mapFakeId2RealId = {};
-    var companyPromises = models.map(function (c) {
-        return Company.create({
-            caseID: c.caseID,
-            name: c.name,
-            address: c.address,
-            city: c.city,
-            state: c.state,
-            job: c.job,
-            h2aViolations: c.h2aViolations,
-            h2aBW: c.h2aBW,
-            h2aEE: c.h2aEE,
-            h2aCMP: c.h2aCMP,
-            startDate: c.startDate,
-            endDate: c.endDate,
-        }).then(function (obj) {
-            obj.save();
-        }).catch(function(err){
-            console.error('Error create user', err);
-        });
-    });
+  });
 
-    Promise.all(companyPromises).then(function () {
-        //mongoose.disconnect();
-    });
+  Promise.all(companyPromises).then(function () {
+      //mongoose.disconnect();
+      console.log("Finished");
+  });
 
 }).catch(function(err){
     console.error('Error create schemaInfo', err);

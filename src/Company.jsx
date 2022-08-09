@@ -1,10 +1,11 @@
 import React from 'react';
 import {
-  Typography, CircularProgress, Divider, Card
+  Typography, CircularProgress, Divider, Card, Button
 } from '@mui/material';
 import { useParams } from "react-router-dom";
 import { MdLocationOn } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
+import { Navigate, Link } from "react-router-dom";
 import './Company.css';
 import data from './data.js';
 const axios = require('axios');
@@ -26,8 +27,18 @@ class CompanyComp extends React.Component {
       endDate: '',
       loaded: false,
       id: this.props.id,
+      newUrl: '',
     };
     this.prettyDollars = this.prettyDollars.bind(this);
+    this.changeURL = this.changeURL.bind(this);
+  }
+
+  changeURL(event, url) {
+    if (window.location.href.split("/")[3] === "es") {
+      this.setState({newUrl: "/es" + url});
+    } else {
+      this.setState({newUrl: url});
+    }
   }
 
   componentDidMount(prevProps) {
@@ -147,6 +158,12 @@ class CompanyComp extends React.Component {
     }
     return (
       <div id="company">
+        <div className="left">
+          {this.state.newUrl && <Navigate to={this.state.newUrl} replace={true} />}
+          <Button variant="contained" onClick={event => this.changeURL(event, "/search")}>
+            <FaArrowLeft/> {lanData.company.back}
+          </Button>
+        </div>
         <Card className="card">
           {body}
         </Card>

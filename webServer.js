@@ -45,6 +45,40 @@ app.get('/company/npages', function (request, response) {
   });
 });
 
+function sortList(list, param) {
+  let ret = list.sort(function(a, b) {
+    const nameA = a.name.toUpperCase(); // ignore upper and lowercase
+    const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+    const h2aA = a.h2aViolations;
+    const h2aB = b.h2aViolations;
+    if (param === 'h2a-violations') {
+      if (h2aA > h2aB) {
+        return -1;
+      }
+      if (h2aA < h2aB) {
+        return 1;
+      }
+    }
+    else if (param === 'h2a-violations-up') {
+      if (h2aA < h2aB) {
+        return -1;
+      }
+      if (h2aA > h2aB) {
+        return 1;
+      }
+    }
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    // names must be equal
+    return 0;
+  });
+  return ret;
+}
+
 app.get('/company/list/:index/:sort', function (request, response) {
   let index = parseInt(request.params.index);
   let sort = request.params.sort;
@@ -58,28 +92,7 @@ app.get('/company/list/:index/:sort', function (request, response) {
       return;
     }
     let companies = JSON.parse(JSON.stringify(info));
-    companies = companies.sort(function(a, b) {
-      const nameA = a.name.toUpperCase(); // ignore upper and lowercase
-      const nameB = b.name.toUpperCase(); // ignore upper and lowercase
-      const h2aA = a.h2aViolations;
-      const h2aB = b.h2aViolations;
-      if (sort === 'h2a-violations') {
-        if (h2aA > h2aB) {
-          return -1;
-        }
-        if (h2aA < h2aB) {
-          return 1;
-        }
-      }
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      // names must be equal
-      return 0;
-    });
+    companies = sortList(companies, sort);
     response.status(200).send(JSON.stringify(companies.slice(index * 100, (index + 1) * 100)));
   });
 });
@@ -97,28 +110,7 @@ app.get('/company/state/:state/:sort', function (request, response) {
       return;
     }
     let companies = JSON.parse(JSON.stringify(info));
-    companies = companies.sort(function(a, b) {
-      const nameA = a.name.toUpperCase(); // ignore upper and lowercase
-      const nameB = b.name.toUpperCase(); // ignore upper and lowercase
-      const h2aA = a.h2aViolations;
-      const h2aB = b.h2aViolations;
-      if (sort === 'h2a-violations') {
-        if (h2aA > h2aB) {
-          return -1;
-        }
-        if (h2aA < h2aB) {
-          return 1;
-        }
-      }
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      // names must be equal
-      return 0;
-    });
+    companies = sortList(companies, sort);
     response.status(200).send(JSON.stringify(companies));
   });
 });
@@ -136,28 +128,7 @@ app.get('/company/industry/:industry/:sort', function (request, response) {
       return;
     }
     let companies = JSON.parse(JSON.stringify(info));
-    companies = companies.sort(function(a, b) {
-      const nameA = a.name.toUpperCase(); // ignore upper and lowercase
-      const nameB = b.name.toUpperCase(); // ignore upper and lowercase
-      const h2aA = a.h2aViolations;
-      const h2aB = b.h2aViolations;
-      if (sort === 'h2a-violations') {
-        if (h2aA > h2aB) {
-          return -1;
-        }
-        if (h2aA < h2aB) {
-          return 1;
-        }
-      }
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      // names must be equal
-      return 0;
-    });
+    companies = sortList(companies, sort);
     response.status(200).send(JSON.stringify(companies));
   });
 });

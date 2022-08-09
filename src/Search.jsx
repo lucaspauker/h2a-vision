@@ -26,7 +26,7 @@ class Search extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.sortData = this.sortData.bind(this);
+    //this.sortData = this.sortData.bind(this);
     this.handleSortChange = this.handleSortChange.bind(this);
     this.handleStateChange = this.handleStateChange.bind(this);
     this.incrementPage = this.incrementPage.bind(this);
@@ -45,33 +45,33 @@ class Search extends React.Component {
     this.load();
   }
 
-  sortData() {
-    return;
-    console.log("Sorting");
-    const sort = this.state.sort;
-    this.setState({data: this.state.data.sort(function(a, b) {
-      const nameA = a.name.toUpperCase(); // ignore upper and lowercase
-      const nameB = b.name.toUpperCase(); // ignore upper and lowercase
-      const h2aA = a.h2aViolations;
-      const h2aB = b.h2aViolations;
-      if (sort === 'h2a-violations') {
-        if (h2aA > h2aB) {
-          return -1;
-        }
-        if (h2aA < h2aB) {
-          return 1;
-        }
-      }
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      // names must be equal
-      return 0;
-    })});
-  }
+  //sortData() {
+  //  return;
+  //  console.log("Sorting");
+  //  const sort = this.state.sort;
+  //  this.setState({data: this.state.data.sort(function(a, b) {
+  //    const nameA = a.name.toUpperCase(); // ignore upper and lowercase
+  //    const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+  //    const h2aA = a.h2aViolations;
+  //    const h2aB = b.h2aViolations;
+  //    if (sort === 'h2a-violations') {
+  //      if (h2aA > h2aB) {
+  //        return -1;
+  //      }
+  //      if (h2aA < h2aB) {
+  //        return 1;
+  //      }
+  //    }
+  //    if (nameA < nameB) {
+  //      return -1;
+  //    }
+  //    if (nameA > nameB) {
+  //      return 1;
+  //    }
+  //    // names must be equal
+  //    return 0;
+  //  })});
+  //}
 
   load(index=0) {
     console.log("Loading page " + index);
@@ -257,8 +257,11 @@ class Search extends React.Component {
     return (
       <div id="search">
         <div className="header">
-          <Typography variant="h2" color="inherit">
+          <Typography component="h1" variant="h2" color="inherit" gutterBottom>
             {lanData.search.title}
+          </Typography>
+          <Typography variant="h6" align="center" color="textSecondary" paragraph>
+            {lanData.search.descriptionText}
           </Typography>
         </div>
         <div className="input">
@@ -290,6 +293,7 @@ class Search extends React.Component {
             >
               <MenuItem value="alphabetical">{lanData.search.alphabeticalText}</MenuItem>
               <MenuItem value="h2a-violations">{lanData.search.h2aViolText}</MenuItem>
+              <MenuItem value="h2a-violations-up">{lanData.search.h2aViolUpText}</MenuItem>
             </Select>
           </FormControl>
           <TextField className="tf" id="outlined-basic" label={lanData.search.searchCompanyText} variant="outlined" value={this.state.inputText} onChange={this.handleChange} />

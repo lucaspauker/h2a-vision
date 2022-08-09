@@ -71,10 +71,7 @@ class CompanyCard extends React.Component {
             {lanData.companyCard.numEE}: {this.state.h2aEE}
           </Typography>
           <Typography variant="body2">
-            {lanData.companyCard.h2aBW}: {this.prettyDollars(this.state.h2aBW)}
-          </Typography>
-          <Typography variant="body2">
-            {lanData.companyCard.h2aCMP}: {this.prettyDollars(this.state.h2aCMP)}
+            {lanData.company.averageText}: {this.prettyDollars((parseFloat(this.state.h2aBW) + parseFloat(this.state.h2aCMP)) / this.state.h2aViolations)}
           </Typography>
         </div>
         <div className="card-elem">

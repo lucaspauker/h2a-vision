@@ -1,5 +1,5 @@
 var data = {
-  db: 'http://localhost:5000',
+  db: process.env.REACT_APP_SITE,
   english: {
     topbar: {
       titleText: 'H-2A Vision',
@@ -53,10 +53,12 @@ var data = {
     },
     search: {
       title: "Search H-2A violation data",
+      descriptionText: "Search by state or by company name. If a company is not on this website, it means that they did not have any reported H-2A violations.",
       stateText: "State",
       noneText: "All",
       alphabeticalText: "Alphabetical",
-      h2aViolText: "H-2A Violations",
+      h2aViolText: "H-2A Violations (↓)",
+      h2aViolUpText: "H-2A Violations (↑)",
       sortText: "Sort",
       searchCompanyText: "Search by company name",
       refreshText: "Refresh",
@@ -74,6 +76,7 @@ var data = {
       invStart: 'Investigation start date',
       invEnd: 'Investigation end date',
       dol: 'US Department of Labor Enforcement Data',
+      back: 'Back',
     },
     resources: {
       title: "Resources",
@@ -200,10 +203,12 @@ var data = {
     },
     search: {
       title: "Busca datos de infracciones H-2A",
+      descriptionText: "Busque por estado o por nombre de la empresa. Si una empresa no está en este sitio web, significa que no tiene ninguna violación H-2A.",
       stateText: "Estado",
       noneText: "Todos",
       alphabeticalText: "Alfabético",
-      h2aViolText: "Violaciones H-2A",
+      h2aViolText: "Violaciones H-2A (↓)",
+      h2aViolUpText: "Violaciones H-2A (↑)",
       sortText: "Ordenar",
       searchCompanyText: "Buscar por nombre de empresa",
       refreshText: "Refrescar",
@@ -221,6 +226,7 @@ var data = {
       invStart: 'Fecha de inicio de la investigacion',
       invEnd: 'Fecha de finalización de la investigación',
       dol: 'Departamento de Trabajo de EE. UU.',
+      back: 'Atrás',
     },
     resources: {
       title: "Recursos",

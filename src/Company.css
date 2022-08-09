@@ -48,7 +48,7 @@
 
 #company .external {
   margin-top: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 0px;
 }
 
 #company .violation {
@@ -79,3 +79,13 @@
 #company .card:hover {
   transform: none;
 }
+
+#company .left {
+  text-align: left;
+  margin-left: 10px;
+}
+
+#company .left svg {
+  margin-right: 5px;
+}
+

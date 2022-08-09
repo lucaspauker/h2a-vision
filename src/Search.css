@@ -88,3 +88,8 @@
   margin-top: 50px;
   margin-bottom: 10px;
 }
+
+#search .header {
+  max-width: 800px;
+  margin: 0px auto;
+}
